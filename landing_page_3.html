@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automation Agency - Automate Better. Operate Smarter.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00D4FF;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00D4FF;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.06) 0%, transparent 60%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text h2 {
+            font-size: 1.4rem;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00D4FF, #8A2BE2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .ai-nodes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .node {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00D4FF, #8A2BE2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .node:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .node:nth-child(2) { top: 30%; right: 10%; animation-delay: 1s; }
+        .node:nth-child(3) { bottom: 20%; left: 10%; animation-delay: 2s; }
+        .node:nth-child(4) { bottom: 10%; right: 25%; animation-delay: 3s; }
+        .node:nth-child(5) { top: 50%; left: 50%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+            color: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00D4FF, #8A2BE2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Product Highlights */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+            border-color: #00D4FF;
+        }
+
+        .highlight-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #00D4FF, #8A2BE2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Agentic Actions */
+        .agentic-actions {
+            margin: 4rem 0;
+        }
+
+        .action-workflow {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .workflow-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .workflow-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00D4FF, #8A2BE2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .workflow-info h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .workflow-info p {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+
+        .action-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .action-step {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .action-step:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00D4FF, #8A2BE2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .action-step p {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Pricing */
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(152, 255, 152, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .pricing-card:hover::before {
+            left: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #98FF98;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00D4FF;
+            margin: 1rem 0;
+        }
+
+        /* How It Works */
+        .process {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00D4FF;
+            font-size: 1.5rem;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8A2BE2, #00D4FF);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Use Cases - Updated to boxes */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .use-case-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #8A2BE2;
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.3);
+        }
+
+        .use-case-card h3 {
+            color: #00D4FF;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .use-case-card p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .industry-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            text-align: center;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .testimonial {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            color: #00D4FF;
+            font-weight: 600;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-input {
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder {
+            color: #ccc;
+        }
+
+        .form-textarea {
+            grid-column: 1 / -1;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .process {
+                flex-direction: column;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .use-cases {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">AI Automation</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#cases">Cases</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Hire Self-Learning AI Agents to Run Your Operations</h1>
+                        <h2>Meet the leading agentic AI platform for SMB Automation. Used by forward-thinking companies and scale-ups, our platform automates workflows with advanced AI agents to reduce operational costs and create leverage.</h2>
+                        <a href="#contact" class="cta-button">Get a Free Automation Audit</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Agents Section -->
+        <section id="services" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>AI Agents: Workforce With Human-Level Performance</h2>
+                    <p style="max-width: 700px; margin: 0 auto; color: #a0a0a0; font-size: 1.2rem;">AI agents deliver precise, efficient task automation, matching human-level performance. They operate continuously, reducing errors and increasing productivity, allowing businesses to scale fast without additional human resource costs.</p>
+                </div>
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🏢</div>
+                        <h3>Built for SMBs</h3>
+                        <p>Designed specifically for small to medium-sized businesses with tailored automation solutions that fit your scale and budget.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🧠</div>
+                        <h3>Built with Agents</h3>
+                        <p>Advanced agentic systems powered by LangChain, OpenAI, Claude, and Gemini for intelligent task automation.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">⚙️</div>
+                        <h3>Deployed by Experts</h3>
+                        <p>Custom orchestration, real-world deployment, and ongoing optimization by our experienced automation team.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agentic Workflows Section -->
+        <section class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>A Learning System to Optimize and Automate Workflows. It's Possible.</h2>
+                    <p style="max-width: 700px; margin: 0 auto; color: #a0a0a0; font-size: 1.2rem;">AI agents, powered by agentic workflows, leverage advanced learning systems to autonomously identify and automate essential tasks. This dynamic adaptability keeps operations smooth and responsive to changing demands.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agentic Actions -->
+        <section id="cases" class="fade-in">
+            <div class="container">
+                <div class="agentic-actions">
+                    <!-- Private Lending Workflow Optimization -->
+                    <div class="action-workflow">
+                        <div class="workflow-header">
+                            <div class="workflow-icon">💰</div>
+                            <div class="workflow-info">
+                                <h3>Private Lending Workflow Optimization</h3>
+                                <p>Streamline end-to-end lending operations with automated borrowing base calculations, compliance monitoring, and portfolio management for enhanced efficiency.</p>
+                            </div>
+                        </div>
+                        <div class="action-steps">
+                            <div class="action-step">
+                                <div class="step-icon">📊</div>
+                                <p>Automate borrowing base calculations with real-time asset valuations and advance rate adjustments based on collateral performance.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">🏛️</div>
+                                <p>Monitor bank compliance requirements, covenant testing, and regulatory reporting to ensure adherence to lending agreements.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📋</div>
+                                <p>Generate automated compliance reports, borrowing certificates, and portfolio summaries for lenders and stakeholders.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">⚡</div>
+                                <p>Trigger alerts for covenant violations, funding availability changes, and critical portfolio metrics requiring attention.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Portfolio Analysis Workflow -->
+                    <div class="action-workflow">
+                        <div class="workflow-header">
+                            <div class="workflow-icon">📈</div>
+                            <div class="workflow-info">
+                                <h3>Investment Portfolio Analysis</h3>
+                                <p>Automate portfolio monitoring, risk assessment, and client reporting to deliver consistent investment insights and recommendations.</p>
+                            </div>
+                        </div>
+                        <div class="action-steps">
+                            <div class="action-step">
+                                <div class="step-icon">📊</div>
+                                <p>Continuously monitor portfolio performance, market conditions, and risk metrics across all client accounts.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">⚠️</div>
+                                <p>Identify potential risks, rebalancing opportunities, and alert advisors to portfolio deviations.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📋</div>
+                                <p>Generate comprehensive performance reports with insights, charts, and personalized recommendations.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📧</div>
+                                <p>Deliver automated client reports and schedule review meetings based on performance triggers.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real Estate Lead Management Workflow -->
+                    <div class="action-workflow">
+                        <div class="workflow-header">
+                            <div class="workflow-icon">🏠</div>
+                            <div class="workflow-info">
+                                <h3>Real Estate Lead Management</h3>
+                                <p>Automatically qualify, nurture, and convert real estate leads through intelligent property matching and personalized communication.</p>
+                            </div>
+                        </div>
+                        <div class="action-steps">
+                            <div class="action-step">
+                                <div class="step-icon">🔍</div>
+                                <p>Capture and qualify leads from multiple sources, analyzing buyer preferences and financial capacity.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">🎯</div>
+                                <p>Match qualified leads with relevant properties based on criteria, location, and budget requirements.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📱</div>
+                                <p>Send personalized property recommendations and market updates via email, SMS, and social channels.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📅</div>
+                                <p>Schedule viewings, follow up on inquiries, and track engagement throughout the sales funnel.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sales Proposal Workflow -->
+                    <div class="action-workflow">
+                        <div class="workflow-header">
+                            <div class="workflow-icon">📊</div>
+                            <div class="workflow-info">
+                                <h3>Sales Proposal Generation</h3>
+                                <p>Generate tailored sales proposals in minutes, reducing manual effort and accelerating your sales cycle.</p>
+                            </div>
+                        </div>
+                        <div class="action-steps">
+                            <div class="action-step">
+                                <div class="step-icon">🌐</div>
+                                <p>Gather relevant client information through automated web research.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">🎯</div>
+                                <p>Analyze client data and tailor USPs to meet specific client needs.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📝</div>
+                                <p>Compile proposal into a professional document for easy sharing.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📤</div>
+                                <p>Send email to client with proposal link for streamlined communication.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Process Automation Workflow -->
+                    <div class="action-workflow">
+                        <div class="workflow-header">
+                            <div class="workflow-icon">⚙️</div>
+                            <div class="workflow-info">
+                                <h3>Business Process Automation</h3>
+                                <p>Transform repetitive business operations with intelligent automation that handles complex workflows, data management, and cross-system integrations seamlessly.</p>
+                            </div>
+                        </div>
+                        <div class="action-steps">
+                            <div class="action-step">
+                                <div class="step-icon">📄</div>
+                                <p>Automate invoice processing, purchase orders, and expense management with intelligent data extraction and approval workflows.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">👥</div>
+                                <p>Streamline employee onboarding, document verification, and HR profile creation with automated compliance checks and notifications.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📊</div>
+                                <p>Generate automated reports, dashboards, and KPI tracking across multiple data sources with real-time business intelligence.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">🔄</div>
+                                <p>Orchestrate cross-platform integrations between CRM, ERP, and accounting systems for seamless data synchronization.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📋</div>
+                                <p>Automate quality assurance processes, compliance audits, and risk assessments with intelligent monitoring and alerting systems.</p>
+                            </div>
+                            <div class="action-step">
+                                <div class="step-icon">📞</div>
+                                <p>Enable automated customer support ticket routing, response generation, and escalation management for enhanced service delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="pricing" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Improve Operational Efficiency and Create Leverage. Fast.</h2>
+                    <p style="max-width: 700px; margin: 0 auto; color: #a0a0a0; font-size: 1.2rem;">Deploy AI agents to streamline operations and amplify your business's efficiency. These agents optimize processes, reduce delays, and enhance output, ensuring you gain a competitive edge with speed and precision.</p>
+                </div>
+                <div class="pricing">
+                    <div class="pricing-card">
+                        <h3>Free Automation Audit</h3>
+                        <div class="price">Free</div>
+                        <p>Identify automation opportunities in your business—completely risk-free. We'll analyze your workflows and show you exactly where AI can make the biggest impact.</p>
+                        <a href="#contact" class="cta-button" style="margin-top: 1rem;">Get Started</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Agent-in-a-Box Deployment</h3>
+                        <div class="price">$499/month</div>
+                        <p>Ready-to-go AI agents optimizing your core workflows. Perfect for SMBs looking to automate key processes without the complexity.</p>
+                        <a href="#contact" class="cta-button" style="margin-top: 1rem;">Choose Plan</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Custom Enterprise Workflows</h3>
+                        <div class="price">Custom</div>
+                        <p>Fully customized AI agent deployment tailored to your unique business processes. Pricing based on complexity and scope.</p>
+                        <a href="#contact" class="cta-button" style="margin-top: 1rem;">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agent OS Section -->
+        <section class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Agentic. Reliable. Accurate AI for SMBs</h2>
+                    <p style="max-width: 700px; margin: 0 auto; color: #a0a0a0; font-size: 1.2rem;">An AI-native platform that combines accuracy, reliability, and flexibility in one powerful solution. With multi-agent capabilities and a modular design, it acts as the glue between your systems.</p>
+                </div>
+                <div class="process">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Discovery</h3>
+                        <p>We analyze your current workflows and identify the best automation opportunities for immediate impact.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Integration</h3>
+                        <p>Seamless setup with your existing tools and systems, no disruption to your current operations.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Testing</h3>
+                        <p>Rigorous testing and fine-tuning to ensure perfect performance before going live.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Launch</h3>
+                        <p>Go live effortlessly with full support and monitoring from our expert team.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h3>Optimize</h3>
+                        <p>Continuous improvements and optimization based on real performance data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Industry Specific AI: One Platform for All Your Needs</h2>
+                    <p style="max-width: 700px; margin: 0 auto; color: #a0a0a0; font-size: 1.2rem;">Explore how AI delivers tangible results in diverse scenarios. From optimizing workflows to driving innovation, see how our technology addresses specific challenges and enhances performance across various fields.</p>
+                </div>
+                <div class="use-cases">
+                    <div class="use-case-card">
+                        <span class="industry-icon">🏠</span>
+                        <h3>Real Estate</h3>
+                        <p>Automated lead qualification, property matching, and client communication systems that streamline the entire sales process from inquiry to closing.</p>
+                    </div>
+                    <div class="use-case-card">
+                        <span class="industry-icon">📈</span>
+                        <h3>Investment Management</h3>
+                        <p>Portfolio analysis, risk assessment, and client reporting automation that helps investment firms deliver better outcomes with improved efficiency.</p>
+                    </div>
+                    <div class="use-case-card">
+                        <span class="industry-icon">💰</span>
+                        <h3>Private Lending</h3>
+                        <p>Loan application processing, credit analysis, and compliance monitoring systems that accelerate decision-making while maintaining accuracy.</p>
+                    </div>
+                    <div class="use-case-card">
+                        <span class="industry-icon">💼</span>
+                        <h3>Professional Services</h3>
+                        <p>Client onboarding, project management, and billing automation that allows consultants to focus on high-value work instead of administrative tasks.</p>
+                    </div>
+                    <div class="use-case-card">
+                        <span class="industry-icon">🏭</span>
+                        <h3>Manufacturing</h3>
+                        <p>Supply chain optimization, quality control monitoring, and production scheduling systems that reduce waste and improve operational efficiency.</p>
+                    </div>
+                    <div class="use-case-card">
+                        <span class="industry-icon">⚖️</span>
+                        <h3>Legal</h3>
+                        <p>Document review, contract analysis, and case management automation that helps law firms deliver faster, more accurate legal services to clients.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multi-Agent Section -->
+        <section class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Empowering Autonomous Agents to Work Together</h2>
+                    <p style="max-width: 700px; margin: 0 auto; color: #a0a0a0; font-size: 1.2rem;">Why rely on a single agent when you can utilize the power of many? Our agentic AI systems integrate multiple agents for more comprehensive and cohesive automation strategy, boosting productivity across all levels of your organization.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="contact" class="fade-in">
+            <div class="container">
+                <div class="final-cta">
+                    <h2>Build Your AI Workforce Today!</h2>
+                    <p>Deploy intelligent agents to streamline operations and improve performance across your business. Start automating with confidence.</p>
+                    
+                    <div style="margin: 2rem 0;">
+                        <a href="#" class="cta-button" style="margin-right: 1rem;">Book a Demo</a>
+                        <a href="#" class="cta-button">Get Free Audit</a>
+                    </div>
+
+                    <form class="cta-form">
+                        <input type="text" class="form-input" placeholder="Your Name" required>
+                        <input type="email" class="form-input" placeholder="Your Email" required>
+                        <input type="text" class="form-input" placeholder="Business Name" required>
+                        <textarea class="form-input form-textarea" placeholder="Tell us about your automation needs..." required></textarea>
+                        <button type="submit" class="cta-button" style="grid-column: 1 / -1;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p style="margin-top: 0.5rem; color: #a0a0a0;">Proudly Built & Operated in Los Angeles, CA ☀️ | Backed by Stable Park Capital</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('.cta-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your interest! We\'ll get back to you soon.');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(15, 15, 15, 0.95)';
+            } else {
+                header.style.background = 'rgba(15, 15, 15, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
